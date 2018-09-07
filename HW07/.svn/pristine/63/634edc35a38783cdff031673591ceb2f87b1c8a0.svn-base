@@ -1,0 +1,17 @@
+package client.clientView;
+
+public interface IModelAdapter<TUpdateDropListItem> {
+	
+	public String connectTo(String remoteHost);
+
+
+	public void quit();
+	
+	public void sendMessageToServer(String text);
+	
+	public String makeBall(TUpdateDropListItem classname, String runparameter);
+	
+	public TUpdateDropListItem addStrategy(String classname);
+	
+	public TUpdateDropListItem combineBall(TUpdateDropListItem task1, TUpdateDropListItem task2);
+}

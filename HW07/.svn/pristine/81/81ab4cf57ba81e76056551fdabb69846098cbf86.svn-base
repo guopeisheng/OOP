@@ -1,0 +1,73 @@
+package client.clientModel.task;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import provided.client.model.taskUtils.ITaskFactory;
+import provided.compute.ILocalTaskViewAdapter;
+import provided.compute.ITask;
+import provided.compute.ITaskResultFormatter;
+
+public class findAllNumbersDisappearedArray implements ITask<ArrayList<Integer>> {
+
+	/**
+	 * UID for well-defined serialization
+	 */
+	private static final long serialVersionUID = -4979077879785376535L;
+
+	private String num;
+	
+	private transient ILocalTaskViewAdapter taskView = ILocalTaskViewAdapter.DEFAULT_ADAPTER;
+	
+	public findAllNumbersDisappearedArray(String num) {
+	    this.num = num;
+	  }
+
+	@Override
+	public ArrayList<Integer> execute() throws RemoteException {
+		taskView.append("Calculating function PlusOne...");
+		ArrayList<Integer> list = new ArrayList<>();
+        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+        for (int i = 0; i < num.length(); i++) {
+            hm.put(Character.getNumericValue(num.charAt(i)), i);
+        }
+        for (int i = 1; i <= num.length(); i++) {
+            if (!hm.containsKey(i))
+                list.add(i);
+        }
+        return list;
+	}
+	
+	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        stream.defaultReadObject();
+        taskView = ILocalTaskViewAdapter.DEFAULT_ADAPTER;
+  }
+
+	@Override
+	public void setTaskViewAdapter(ILocalTaskViewAdapter viewAdapter) {
+		taskView = viewAdapter;
+	}
+	
+	public static final  ITaskFactory<ArrayList<Integer>> FACTORY = new ITaskFactory<ArrayList<Integer>>() {
+    	public ITask<ArrayList<Integer>> make(String param) {
+    		return new findAllNumbersDisappearedArray(param);
+    	}
+    	
+    	public String toString() {
+    		return findAllNumbersDisappearedArray.class.getName();
+    	}
+    };
+
+	@Override
+	public ITaskResultFormatter<ArrayList<Integer>> getFormatter() {
+    	return new ITaskResultFormatter<ArrayList<Integer>>() {
+    
+    		public String format(ArrayList<Integer> result) {
+    			return num + " there are these numbers that are disappearing from the array: " + result ;
+    		}
+    	};
+	}
+}

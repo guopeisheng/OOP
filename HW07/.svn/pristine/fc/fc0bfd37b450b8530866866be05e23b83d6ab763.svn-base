@@ -1,0 +1,10 @@
+package client.clientModel;
+
+public interface IViewAdapter {
+	
+	public void append(String s);
+
+	
+	public void setRemoteHost(String hostAddress);
+	
+}

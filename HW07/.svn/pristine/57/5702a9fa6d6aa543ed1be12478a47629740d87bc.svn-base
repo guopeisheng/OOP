@@ -1,0 +1,138 @@
+package server.view;
+
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+
+/**
+ *  "view" for the Model-View-Controller architecture
+ *
+ */
+public class EngineGUI extends JFrame {
+
+	/**
+	 * UID
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * whole panel of the view
+	 */
+	private final JPanel panel = new JPanel();
+	/**
+	 * upper panel
+	 */
+	private final JPanel upPnl = new JPanel();
+	/**
+	 * the btn to quit
+	 */
+	private final JButton btnQuit = new JButton("Quit");
+	/**
+	 * text area
+	 */
+	private final JTextArea textArea = new JTextArea();
+	/**
+	 * the bottom scrollPane
+	 */
+	private final JScrollPane scrollPane = new JScrollPane(textArea);
+	/**
+	 * the panel inside upper panel
+	 */
+	private final JPanel panel_1 = new JPanel();
+	/**
+	 * the editor
+	 */
+	private final JEditorPane dtrpnHitEnterTo_1 = new JEditorPane();
+	/**
+	 * the adapter to model
+	 */
+	private IModelAdapter _iModelAdapter;
+
+	/**
+	 * constructor
+	 */
+	public EngineGUI(IModelAdapter _iModelAdapter) {
+		textArea.setToolTipText("the message");
+		this._iModelAdapter = _iModelAdapter;
+		initGUI();
+	}
+
+	/**
+	 */
+	private void initGUI() {
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				quit();
+			}
+		});
+
+		panel.setToolTipText("panel");
+
+		setBounds(200, 200, 600, 400);
+		getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(new BorderLayout(0, 0));
+		upPnl.setBackground(Color.LIGHT_GRAY);
+		upPnl.setToolTipText("up side panel");
+
+		panel.add(upPnl, BorderLayout.NORTH);
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				quit();
+
+			}
+		});
+		btnQuit.setToolTipText("Quit the server");
+
+		upPnl.add(btnQuit);
+		panel_1.setToolTipText("the message panel");
+
+		upPnl.add(panel_1);
+		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+		dtrpnHitEnterTo_1.setToolTipText("this is the message board");
+		dtrpnHitEnterTo_1.setText("Hit Enter to send msg...");
+		dtrpnHitEnterTo_1.addKeyListener(new java.awt.event.KeyAdapter() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+					System.out.println("Pressed");
+					sendText();
+				}
+			}
+		});
+
+		panel_1.add(dtrpnHitEnterTo_1);
+		panel_1.setBorder(BorderFactory.createTitledBorder("Send msg to remote client's view"));
+		panel.add(scrollPane, BorderLayout.CENTER);
+	}
+
+	/**
+	 * start the GUI
+	 */
+	public void start() {
+		setVisible(true);
+	}
+
+	/**
+	 * stop GUI
+	 */
+	private void quit() {
+		System.out.println("Engine GUI: ending the engine now...");
+		_iModelAdapter.quit();
+	}
+
+	/**
+	 * sent txt to cliend
+	 */
+	private void sendText() {
+		_iModelAdapter.sendMessageToClient(dtrpnHitEnterTo_1.getText());
+	}
+
+	/**
+	 * append msg to txtarea
+	 */
+	public void append(String s) {
+		textArea.append(s);
+		textArea.setCaretPosition(textArea.getText().length());
+	}
+
+}

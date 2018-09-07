@@ -1,0 +1,199 @@
+package client.clientModel;
+
+
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.function.Consumer;
+
+import client.clientModel.task.MultipleTask;
+import provided.client.model.taskUtils.ITaskFactory;
+import provided.compute.*;
+import provided.rmiUtils.*;
+
+
+public class ClientModel {
+	/**
+	 * 
+	 */
+	private IViewAdapter _iViewAdater;
+
+	/**
+	 * 
+	 */
+	private ICompute iCompute;
+
+	
+	private IRemoteTaskViewAdapter serverTextAdapter;
+	
+	private Consumer<String> outputCmd = new Consumer<String>() {
+
+		@Override
+		public void accept(String t) {
+			// TODO Auto-generated method stub
+			_iViewAdater.append(t);
+		}
+	};
+	
+	IRMIUtils rmiUtils = new RMIUtils(outputCmd);
+
+	
+	private IRemoteTaskViewAdapter clientTA = new IRemoteTaskViewAdapter() {
+		public void append(String s) {
+			_iViewAdater.append("[Server] " + s);
+		}
+	};
+
+	
+	private IRemoteTaskViewAdapter clientTAstub = null;
+
+	
+	public ClientModel(IViewAdapter _iViewAdater) {
+		this._iViewAdater = _iViewAdater;
+	}
+
+	
+	public void start() {
+		rmiUtils.startRMI(IRMI_Defs.CLASS_SERVER_PORT_CLIENT);
+
+		try {
+			_iViewAdater.setRemoteHost(rmiUtils.getLocalAddress()); 
+		} catch (Exception e) {
+			System.err.println("Error getting local address: " + e);
+		}
+	}
+
+	
+	public void quit() {
+		System.out.println("ClientModel.quit(): client is quitting the program.");
+		try {
+			rmiUtils.stopRMI();
+
+		} catch (Exception e) {
+			System.err.println("ClientModel.quit(): Error stopping class server: " + e);
+		}
+		System.exit(0);
+	}
+
+	
+	public String connectTo(String remoteHost) {
+		try {
+			_iViewAdater.append("Locating registry at " + remoteHost + "...\n");
+			Registry registry = rmiUtils.getRemoteRegistry(remoteHost);
+			_iViewAdater.append("The registry is found: " + registry + "\n");
+			iCompute = (ICompute) registry.lookup(ICompute.BOUND_NAME);
+			_iViewAdater.append("Found remote Compute object which is: " + iCompute + "\n");
+			if (null == clientTAstub) { // Don't re-export clientTA if already done.
+				clientTAstub = (IRemoteTaskViewAdapter) UnicastRemoteObject.exportObject(clientTA,
+						IRemoteTaskViewAdapter.BOUND_PORT_CLIENT);
+			}
+			serverTextAdapter = iCompute.setTextAdapter(clientTAstub);
+			_iViewAdater.append("Get text adapter is: " + serverTextAdapter + "\n");
+			serverTextAdapter.append("Hello from the client! We are HW07 Group 17, qy11 and pg23\n");
+		} catch (Exception e) {
+			_iViewAdater.append("Exception connecting to " + remoteHost + ": " + e + "\n");
+			e.printStackTrace();
+			return "No connection was established!";
+		}
+		return "Connection to the " + remoteHost + " established!";
+	}
+
+	public void sendMessageToServer(String text) {
+		try {
+			_iViewAdater.append("[ClientModel.sendMessageToServer()] Sending message to the connected remote host =  " + text + "\n");
+			serverTextAdapter.append(text);
+		}catch(Exception e) {
+			_iViewAdater.append("ERROR! [ClientModel.sendMessageToServer()]: " + e + "\n");
+			e.printStackTrace();
+		}
+		
+	}
+	
+//	public IStrategyFac makeStrategyFac(final String classname) {
+//		if (null == classname) {
+//			System.out.println("No input task");
+//			return null;
+//		}
+//		return new IStrategyFac() {
+//			/**
+//			 * Instantiate a strategy corresponding to the given class name.
+//			 * @return An IUpdateStrategy instance
+//			 */
+//			public IUpdateStrategy make() {
+//				return loadStrategy(classname);
+//			}
+//
+//			/**
+//			 * Return the given class name string
+//			 */
+//			public String toString() {
+//				return classname;
+//			}
+//		};
+//	}
+	
+//	private IUpdateStrategy loadStrategy(Object fixName) {
+//		//fixName = fixName((String) fixName);
+//		try {
+//			Object[] args = new Object[] {};
+//			java.lang.reflect.Constructor<?> cs[] = Class.forName((String) fixName).getConstructors(); // get all the constructors
+//			java.lang.reflect.Constructor<?> c = null;
+//			for (int i = 0; i < cs.length; i++) { // find the first constructor with the right number of input parameters
+//				if (args.length == (cs[i]).getParameterTypes().length) {
+//					c = cs[i];
+//					break;
+//				}
+//			}
+//			return (IUpdateStrategy) c.newInstance(args); // Call the constructor.   Will throw a null ptr exception if no constructor with the right number of input parameters was found.
+//		} catch (Exception ex) {
+//			System.err.println("Class " + fixName + " failed to load. \nException = \n" + ex);
+//			ex.printStackTrace(); // print the stack trace to help in debugging.
+//			return null;
+//		}
+//	}
+	
+//	public void loadBall(IUpdateStrategy strategy) {
+//		System.out.println("loadball");
+//		/*Component canvas = viewCtrlAdpt.getCanvas();
+//		int defaultRadius = rand.randomInt(Ball.MIN_RADIUS, Ball.MAX_RADIUS);
+//		Color defaultColor = rand.randomColor();
+//		Point defaultLoc = new Point(rand.randomInt(defaultRadius, canvas.getWidth() - defaultRadius),
+//				rand.randomInt(defaultRadius, canvas.getHeight() - defaultRadius));
+//		Point defaultVelocity = new Point(rand.randomInt(Ball.MIN_VEL_X, Ball.MAX_VEL_X),
+//				rand.randomInt(Ball.MIN_VEL_Y, Ball.MAX_VEL_Y));
+//		Ball ball = new Ball(defaultLoc, defaultVelocity, defaultRadius, defaultColor, canvas, strategy);
+//		myDispatcher.addObserver(ball);*/
+//	}
+
+	
+    public <T> String makeBall(ITask<T> task) {
+    	    String resultStr = "";
+        try {
+          T result = iCompute.executeTask(task);
+          resultStr += task.getFormatter().format(result);
+        } catch (Exception e) {
+        	_iViewAdater.append("ERROR! [ClientModel.makeBall()] Task execution exception: " + e + "\n");
+          e.printStackTrace();
+          resultStr += "No result.";
+        }
+        return resultStr;
+	}
+    
+    public ITaskFactory<ArrayList<Object>> combineBall(ITaskFactory<?> task1, ITaskFactory<?> task2) {
+        if (null == task1 || null == task2)
+        	_iViewAdater.append("ERROR! [ClientModel.sendMessageToServer()]: " + "\n");
+        return new ITaskFactory<ArrayList<Object>>() {
+            /**
+             * Instantiate a new MultiStrategy with the strategies from the given strategy factories
+             * @return A MultiStrategy instance
+             */
+       
+        	public ITask<ArrayList<Object>> make(String runparameter) {
+	            return new MultipleTask(task1.make(runparameter), task2.make(runparameter));
+	          }
+        	public String toString() {
+	            return task1 + "-" + task2;
+	          }
+        };
+    }
+}

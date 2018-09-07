@@ -1,0 +1,7 @@
+package server.model;
+
+
+public interface IViewAdapter {
+ 
+  public void append(String s);
+}

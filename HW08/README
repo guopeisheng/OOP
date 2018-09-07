@@ -1,0 +1,49 @@
+Team 05, Zhaohan Jia, Zhouliu
+
+Click To Win
+
+The Goal:
+occupy as many cities as you can within a limited game time.
+
+How to Start Game:
+1. When you received the game, first choose a team (color), then press *ready* button, once you have chosen your team (color), the *ready* button will be disabled and the *Send to Team* button will be abled. Now you can not change your team and can start team chat.
+
+2. You can also send message to every one by using the "Send to World" button.
+
+3. The game controller Panel displays how many players in total are in the lobby and how many players have chosen their team and are ready to play. Once all players are ready, the *Start Game* button will be abled. Any one in the game will be able to start the game by clicking the *Start Game* button. 
+
+4. Once clicked, the *Start Game* button will be disabled and a "Game started!" will be shown in the Game Info area. A Timer will be started and now you can click city to occupy. 
+
+How to connect to others:
+1. Server(Game Holder) create a chatroom.
+
+2. The 1st Player connect the chatroom and join. 
+
+3. The 2nd player connect the chatroom after 1st play has joined, then the 2nd player then join the room. 
+
+4. Do the same procedure one by one for the following player. The next player shouldn't connect the server until the previous player has joined the chatroom.
+
+5. Server(Game Holder) send the game to the members in the chatroom. 
+
+How to use Every Feature of the program:
+1. Each team(color) will have a capital city in the map, you can only occupy (click) cities that are near to the cities you have already occupied. If you click a city that is too far from any one of your cities, one "City out of range!" message will be shown in the Game Info area.
+
+2. Click on a city that is not belong to your team will decrease the number on the city( single click by 1, double click by 2), when the number on the city drops below 0, the city is occupied and the color of the city will be changed to the color of your team.
+
+3. Click on a city that is belong to your team will increase the the number on the city( single click by 1, double click by 2).
+
+4. Each team's current score (number of cities) will be updated as game goes.
+
+5. Send message to team: player enter message in the message input field and press *Send to Team* button
+
+6. Send message to everyone : player enter message in the message input field and press *Send to World* button
+
+How to end and exit the program:
+1. When the game time runs out, the team(s) with the high score are winners, winners will be shown on the Game Info area.
+2. Players click the close button on the game window to exit the program
+
+
+System Architecture:
+1. MVC Pattern. The main architecture is MVC. For the chatroom and game, we use Mini-MVC inside the main mode.
+2. Inheritance-based. The messages passed between different chatapps are inherent based. IUserMsg and IChatMsg extends IMsg. TextMsg, ImageMsg, LeaveMsg, AddGameMsg implement IChatMsg.
+3. Visitor pattern. We use visitor pattern to handle the message. Different types of messages are host and the algorithm is the visitor.
