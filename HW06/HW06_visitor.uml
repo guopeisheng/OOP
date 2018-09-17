@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_iCMqQLF3EeeEHoH6lC-sgw" name="HW06_visitor">
+    <eAnnotations xmi:id="_iT76gLF3EeeEHoH6lC-sgw" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_iT8hkLF3EeeEHoH6lC-sgw" source="codegen">
+        <details xmi:id="_iT8hkbF3EeeEHoH6lC-sgw" key="codegenDirectory" value="/HW06/src"/>
+        <details xmi:id="_ihFlsLF3EeeEHoH6lC-sgw" key="AssociatedSourceCode" value="/HW06/src/model/PlayerModel.java;625219050/1;/HW06/src/model/visitor/PlayVisitor.java;2531075078/1;/HW06/src/model/visitor/ToStringVisitor.java;1081864308/1;"/>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:id="_iZg-ELF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_iZg-EbF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_iZhlILF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_iZhlIbF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_iZhlIrF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_iZhlI7F3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_iZhlJLF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_iZhlJbF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_iZhlJrF3EeeEHoH6lC-sgw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_iZizQLF3EeeEHoH6lC-sgw" name="model">
+      <packagedElement xmi:type="uml:Class" xmi:id="_iZpg8LF3EeeEHoH6lC-sgw" name="PlayerModel">
+        <ownedComment xmi:id="_iaRzF7F3EeeEHoH6lC-sgw">
+          <body>@author : &#xD;
+* @version :{date:} {time:} &#xD;
+* @Description:</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_iaPW0LF3EeeEHoH6lC-sgw" name="host" type="_iaICELF3EeeEHoH6lC-sgw" isReadOnly="true" association="_iaTBMLF3EeeEHoH6lC-sgw"/>
+        <ownedAttribute xmi:id="_iaPW0bF3EeeEHoH6lC-sgw" name="adp" visibility="private" type="_iaKeULF3EeeEHoH6lC-sgw" association="_iaToQbF3EeeEHoH6lC-sgw">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_iaPW0rF3EeeEHoH6lC-sgw" value="IViewAdapter.NULL_OBJECT"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_iaP94bF3EeeEHoH6lC-sgw" name="sp" visibility="private" type="_iaLFYbF3EeeEHoH6lC-sgw" association="_iaUPUbF3EeeEHoH6lC-sgw"/>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iaRMALF3EeeEHoH6lC-sgw" name="PlayerModel" specification="_iaLscbF3EeeEHoH6lC-sgw">
+          <ownedParameter xmi:id="_iaRMAbF3EeeEHoH6lC-sgw" name="viewAdp" type="_iaKeULF3EeeEHoH6lC-sgw"/>
+          <ownedParameter xmi:id="_iaRMArF3EeeEHoH6lC-sgw" type="_iZpg8LF3EeeEHoH6lC-sgw" direction="return"/>
+          <language>java</language>
+          <body>adp = viewAdp;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iaRMA7F3EeeEHoH6lC-sgw" name="LoadFile" specification="_iZrWILF3EeeEHoH6lC-sgw">
+          <ownedParameter xmi:id="_iaRMBLF3EeeEHoH6lC-sgw" name="filename">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>adp.setTxtArea(ABCUtil.Singleton.getFileContents(filename));&#xD;
+		host = new ABCParser(filename).parse();//???&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iaRMBbF3EeeEHoH6lC-sgw" name="Play" specification="_iaM6kbF3EeeEHoH6lC-sgw">
+          <ownedParameter xmi:id="_iaRMBrF3EeeEHoH6lC-sgw" name="instrument" type="_iaMTgrF3EeeEHoH6lC-sgw"/>
+          <language>java</language>
+          <body>sp = new SequencePlayer(16, instrument.getValue());&#xD;
+		sp.setTempo(120);&#xD;
+		host.execute(new PlayVisitor(), sp, 0);&#xD;
+		sp.play(ISequencePlayerStatus.NULL);&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iaRzELF3EeeEHoH6lC-sgw" name="parseToString" specification="_iZskQLF3EeeEHoH6lC-sgw">
+          <ownedParameter xmi:id="_iaRzEbF3EeeEHoH6lC-sgw" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>NESeqList.setToStringAlgo(new ToStringVisitor());//toStringAlgo is static,it's in type of IPhraseVisitor, It's set in this line&#xD;
+		return host.toString();&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iaRzErF3EeeEHoH6lC-sgw" name="stop" specification="_iZtLUbF3EeeEHoH6lC-sgw">
+          <language>java</language>
+          <body>sp.stop();&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_iZrWILF3EeeEHoH6lC-sgw" name="LoadFile" method="_iaRMA7F3EeeEHoH6lC-sgw">
+          <ownedComment xmi:id="_iaSaIbF3EeeEHoH6lC-sgw">
+            <body>set the text area and parse the content inside&#xD;
+	 * ABC.getFileContent->take out information in file which filename correspond to&#xD;
+	 * setTxtArea->actually setting content into view's text panel&#xD;
+	 * @param filename: partial name of the song</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_iZr9MLF3EeeEHoH6lC-sgw" name="filename">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_iZskQLF3EeeEHoH6lC-sgw" name="parseToString" method="_iaRzELF3EeeEHoH6lC-sgw">
+          <ownedComment xmi:id="_iaSaI7F3EeeEHoH6lC-sgw">
+            <body>The parse string method&#xD;
+	 * @return String The result of parsing</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_iZskQbF3EeeEHoH6lC-sgw" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_iZskQrF3EeeEHoH6lC-sgw" name="start"/>
+        <ownedOperation xmi:id="_iZtLUbF3EeeEHoH6lC-sgw" name="stop" method="_iaRzErF3EeeEHoH6lC-sgw">
+          <ownedComment xmi:id="_iaSaJLF3EeeEHoH6lC-sgw">
+            <body>stop</body>
+          </ownedComment>
+        </ownedOperation>
+        <ownedOperation xmi:id="_iaLscbF3EeeEHoH6lC-sgw" name="PlayerModel" method="_iaRMALF3EeeEHoH6lC-sgw">
+          <eAnnotations xmi:id="_iaLsc7F3EeeEHoH6lC-sgw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_iaMTgLF3EeeEHoH6lC-sgw" key="create"/>
+          </eAnnotations>
+          <ownedComment xmi:id="_iaSaILF3EeeEHoH6lC-sgw">
+            <body>Constructor</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_iaLscrF3EeeEHoH6lC-sgw" name="viewAdp" type="_iaKeULF3EeeEHoH6lC-sgw"/>
+          <ownedParameter xmi:id="_iaMTgbF3EeeEHoH6lC-sgw" type="_iZpg8LF3EeeEHoH6lC-sgw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_iaM6kbF3EeeEHoH6lC-sgw" name="Play" method="_iaRMBbF3EeeEHoH6lC-sgw">
+          <ownedComment xmi:id="_iaSaIrF3EeeEHoH6lC-sgw">
+            <body>Play method provided by professor&#xD;
+	 * @param instrument</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_iaM6krF3EeeEHoH6lC-sgw" name="instrument" type="_iaMTgrF3EeeEHoH6lC-sgw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_iZjaULF3EeeEHoH6lC-sgw" name="visitor">
+        <packagedElement xmi:type="uml:Class" xmi:id="_iZuZcLF3EeeEHoH6lC-sgw" name="PlayVisitor">
+          <generalization xmi:id="_iaOvwbF3EeeEHoH6lC-sgw" general="_iaNhoLF3EeeEHoH6lC-sgw"/>
+          <ownedAttribute xmi:id="_iaQk8LF3EeeEHoH6lC-sgw" name="keySig" visibility="private" type="_iaOIsbF3EeeEHoH6lC-sgw" association="_iaU2YbF3EeeEHoH6lC-sgw">
+            <defaultValue xmi:type="uml:LiteralString" xmi:id="_iaQk8bF3EeeEHoH6lC-sgw" value="null"/>
+          </ownedAttribute>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iaRzE7F3EeeEHoH6lC-sgw" name="PlayVisitor" specification="_iZvAgLF3EeeEHoH6lC-sgw">
+            <ownedParameter xmi:id="_iaRzFLF3EeeEHoH6lC-sgw" type="_iZuZcLF3EeeEHoH6lC-sgw" direction="return"/>
+            <language>java</language>
+            <body>String header = &quot;ABCDEFGHIJMNOPRSTUVWXYZ&quot;;&#xD;
+&#xD;
+		this.addCmd(Note.ID, new IPhraseVisitorCmd() {&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				SequencePlayer musicPlayer = (SequencePlayer) params[0];&#xD;
+				//previous note&#xD;
+				Note prevNote = (Note) host;&#xD;
+				//adjust to new note&#xD;
+				Note newNote = keySig.adjust(prevNote);&#xD;
+				return musicPlayer.addNote(newNote, (int) params[1]);&#xD;
+			}&#xD;
+		});&#xD;
+&#xD;
+		this.addCmd(Chord.ID, new IPhraseVisitorCmd() {&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				//cast down from host to chord&#xD;
+				Chord chord = (Chord) host;&#xD;
+				Note[] notes = (chord).getNotes();&#xD;
+&#xD;
+				//take out 1st tick&#xD;
+				int Tick1 = (int) params[1];&#xD;
+&#xD;
+				//execute each element in notes:&#xD;
+				for (Note note : notes) {&#xD;
+					Tick1 = (int) note.execute(PlayVisitor.this, params);&#xD;
+				}&#xD;
+				return Tick1;&#xD;
+			}&#xD;
+		});&#xD;
+&#xD;
+		this.addCmd(Triplet.ID, new IPhraseVisitorCmd() {&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				//cast down from host to Triplet&#xD;
+				Triplet triplete = (Triplet) host;&#xD;
+				Note[] notes = (triplete).getNotes();&#xD;
+&#xD;
+				//take out 1st tick&#xD;
+				int Tick1 = (int) params[1];&#xD;
+&#xD;
+				//execute each element in notes:&#xD;
+				for (Note note : notes) {&#xD;
+					note.setDuration(note.getDuration() * 2 / 3); //scale duration&#xD;
+					Tick1 = (int) note.execute(PlayVisitor.this, params);&#xD;
+				}&#xD;
+				return Tick1;&#xD;
+			}&#xD;
+		});&#xD;
+&#xD;
+		this.addCmd(MTSeqList.ID, new IPhraseVisitorCmd() {&#xD;
+			@Override&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				return params[1];&#xD;
+			}&#xD;
+		});&#xD;
+&#xD;
+		this.addCmd(NESeqList.ID, new IPhraseVisitorCmd() {&#xD;
+			@Override&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				NESeqList NEList = (NESeqList) host;&#xD;
+				//execute first element in list&#xD;
+				//return processed list&#xD;
+				int Tick1 = (int) NEList.getFirst().execute(PlayVisitor.this, params);&#xD;
+				//execute the rest elements in list&#xD;
+				//return processed list&#xD;
+				Tick1 = (int) NEList.getRest().execute(PlayVisitor.this, params[0], Tick1);&#xD;
+				return Tick1;&#xD;
+			}&#xD;
+&#xD;
+		});&#xD;
+&#xD;
+		//for loop for those cases that header is special character &#xD;
+		for (int i = 0; i &lt; header.length(); i++) {&#xD;
+			this.addCmd(&quot;&quot; + header.charAt(i), new IPhraseVisitorCmd() {&#xD;
+				@Override&#xD;
+				public Object apply(String id, IPhrase host, Object... params) {&#xD;
+					return params[1];&#xD;
+				}&#xD;
+			});&#xD;
+		}&#xD;
+&#xD;
+		// default length of a note in the file&#xD;
+		this.addCmd(&quot;L&quot;, new IPhraseVisitorCmd() {&#xD;
+			@Override&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				Header header = (Header) host;&#xD;
+				double parseFract = ABCUtil.Singleton.parseFraction(header.getValue());&#xD;
+				SequencePlayer player = (SequencePlayer) params[0];&#xD;
+				//4 tick per quarter note&#xD;
+				parseFract *= player.getTicksPerQuarterNote() * 4;&#xD;
+				player.setTicksPerDefaultNote((int) parseFract);&#xD;
+				return params[1];&#xD;
+			}&#xD;
+		});&#xD;
+&#xD;
+		//this header specifies the tempo for the piece&#xD;
+		this.addCmd(&quot;Q&quot;, new IPhraseVisitorCmd() {&#xD;
+			@Override&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				Header header = (Header) host;&#xD;
+				SequencePlayer player = (SequencePlayer) params[0];&#xD;
+				//calculate the default number of notes per quarter note&#xD;
+				double defaultNotesPerQuarterNote = player.getTicksPerQuarterNote() / player.getTicksPerDefaultNote();&#xD;
+				int bpm = (int) ABCUtil.Singleton.parseTempo(header.getValue(), defaultNotesPerQuarterNote);&#xD;
+				player.setTempo(bpm);&#xD;
+				return params[1];&#xD;
+			}&#xD;
+		});&#xD;
+&#xD;
+		//key signature for the music&#xD;
+		this.addCmd(&quot;K&quot;, new IPhraseVisitorCmd() {&#xD;
+			@Override&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				Header header = (Header) host;&#xD;
+				keySig = new KeySignature(header.getValue());&#xD;
+				return params[1];&#xD;
+			}&#xD;
+		});&#xD;
+	</body>
+          </ownedBehavior>
+          <ownedOperation xmi:id="_iZvAgLF3EeeEHoH6lC-sgw" name="PlayVisitor" method="_iaRzE7F3EeeEHoH6lC-sgw">
+            <eAnnotations xmi:id="_iZvAgbF3EeeEHoH6lC-sgw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+              <details xmi:id="_iZvAgrF3EeeEHoH6lC-sgw" key="create"/>
+            </eAnnotations>
+            <ownedComment xmi:id="_iaSaJbF3EeeEHoH6lC-sgw">
+              <body>PlayVisitor constructor</body>
+            </ownedComment>
+            <ownedParameter xmi:id="_iZvAg7F3EeeEHoH6lC-sgw" type="_iZuZcLF3EeeEHoH6lC-sgw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_iZvnkLF3EeeEHoH6lC-sgw" name="ToStringVisitor">
+          <ownedComment xmi:id="_iaSaJrF3EeeEHoH6lC-sgw">
+            <body>@author : &#xD;
+* @version :{date:} {time:} &#xD;
+* @Description:</body>
+          </ownedComment>
+          <generalization xmi:id="_iaOvwrF3EeeEHoH6lC-sgw" general="_iaNhoLF3EeeEHoH6lC-sgw"/>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iaRzFbF3EeeEHoH6lC-sgw" name="ToStringVisitor" specification="_iZvnkbF3EeeEHoH6lC-sgw">
+            <ownedParameter xmi:id="_iaRzFrF3EeeEHoH6lC-sgw" type="_iZvnkLF3EeeEHoH6lC-sgw" direction="return"/>
+            <language>java</language>
+            <body>//adding normal Cmd &#xD;
+		this.addCmd(&quot;NESeqList&quot;, new IPhraseVisitorCmd() {&#xD;
+			@Override&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {//params->vararg list of input parameters.&#xD;
+				//cast host into NEList&#xD;
+				NESeqList NEList = (NESeqList) host;&#xD;
+&#xD;
+				//take out rest element (rest element are in another list)&#xD;
+				ISeqList restEle = NEList.getRest();&#xD;
+&#xD;
+				//execute rest Elements (caseAt inside execute) using algo,first param+comma+first element in the lsit&#xD;
+				return restEle.execute(ToStringVisitor.this, params[0] + &quot;, &quot; + NEList.getFirst());&#xD;
+			}&#xD;
+		});&#xD;
+		//adding defaultCmd &#xD;
+		this.addCmd(&quot;MTSeqList&quot;, new IPhraseVisitorCmd() {&#xD;
+			@Override&#xD;
+			public Object apply(String id, IPhrase host, Object... params) {&#xD;
+				return params[0] + &quot;}&quot;;&#xD;
+			}&#xD;
+		});&#xD;
+&#xD;
+	</body>
+          </ownedBehavior>
+          <ownedOperation xmi:id="_iZvnkbF3EeeEHoH6lC-sgw" name="ToStringVisitor" method="_iaRzFbF3EeeEHoH6lC-sgw">
+            <eAnnotations xmi:id="_iZwOoLF3EeeEHoH6lC-sgw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+              <details xmi:id="_iZwOobF3EeeEHoH6lC-sgw" key="create"/>
+            </eAnnotations>
+            <ownedParameter xmi:id="_iZwOorF3EeeEHoH6lC-sgw" type="_iZvnkLF3EeeEHoH6lC-sgw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_iaU2YbF3EeeEHoH6lC-sgw" name="" memberEnd="_iaU2YrF3EeeEHoH6lC-sgw _iaQk8LF3EeeEHoH6lC-sgw">
+          <ownedEnd xmi:id="_iaU2YrF3EeeEHoH6lC-sgw" name="" type="_iZuZcLF3EeeEHoH6lC-sgw" association="_iaU2YbF3EeeEHoH6lC-sgw"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_iaKeULF3EeeEHoH6lC-sgw" name="IViewAdapter"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_iaTBMLF3EeeEHoH6lC-sgw" name="" memberEnd="_iaTBMbF3EeeEHoH6lC-sgw _iaPW0LF3EeeEHoH6lC-sgw">
+        <ownedEnd xmi:id="_iaTBMbF3EeeEHoH6lC-sgw" name="" type="_iZpg8LF3EeeEHoH6lC-sgw" association="_iaTBMLF3EeeEHoH6lC-sgw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_iaToQbF3EeeEHoH6lC-sgw" name="" memberEnd="_iaToQrF3EeeEHoH6lC-sgw _iaPW0bF3EeeEHoH6lC-sgw">
+        <ownedEnd xmi:id="_iaToQrF3EeeEHoH6lC-sgw" name="" type="_iZpg8LF3EeeEHoH6lC-sgw" association="_iaToQbF3EeeEHoH6lC-sgw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_iaUPUbF3EeeEHoH6lC-sgw" name="" memberEnd="_iaUPUrF3EeeEHoH6lC-sgw _iaP94bF3EeeEHoH6lC-sgw">
+        <ownedEnd xmi:id="_iaUPUrF3EeeEHoH6lC-sgw" name="" type="_iZpg8LF3EeeEHoH6lC-sgw" association="_iaUPUbF3EeeEHoH6lC-sgw"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_iZjaUbF3EeeEHoH6lC-sgw" name="provided">
+      <packagedElement xmi:type="uml:Package" xmi:id="_iZjaUrF3EeeEHoH6lC-sgw" name="abcParser"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_iZkBYLF3EeeEHoH6lC-sgw" name="music">
+        <packagedElement xmi:type="uml:Interface" xmi:id="_iaICELF3EeeEHoH6lC-sgw" name="IPhrase"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_iaNhoLF3EeeEHoH6lC-sgw" name="APhraseVisitor"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_iZkBYbF3EeeEHoH6lC-sgw" name="player">
+        <packagedElement xmi:type="uml:Class" xmi:id="_iaLFYbF3EeeEHoH6lC-sgw" name="SequencePlayer"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_iZkBYrF3EeeEHoH6lC-sgw" name="util">
+        <packagedElement xmi:type="uml:Class" xmi:id="_iaMTgrF3EeeEHoH6lC-sgw" name="ABCInstrument"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_iaOIsbF3EeeEHoH6lC-sgw" name="KeySignature"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_iT9IoLF3EeeEHoH6lC-sgw">
+      <eAnnotations xmi:id="_iT9IobF3EeeEHoH6lC-sgw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_iT9vsLF3EeeEHoH6lC-sgw" base_Package="_iCMqQLF3EeeEHoH6lC-sgw">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_iZtLULF3EeeEHoH6lC-sgw" base_Element="_iZskQrF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaJQMLF3EeeEHoH6lC-sgw" base_Element="_iaICELF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaLFYLF3EeeEHoH6lC-sgw" base_Element="_iaKeULF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaLscLF3EeeEHoH6lC-sgw" base_Element="_iaLFYbF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaM6kLF3EeeEHoH6lC-sgw" base_Element="_iaMTgrF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaOIsLF3EeeEHoH6lC-sgw" base_Element="_iaNhoLF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaOvwLF3EeeEHoH6lC-sgw" base_Element="_iaOIsbF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_iaP94LF3EeeEHoH6lC-sgw" base_Element="_iaPW0bF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_iaP94rF3EeeEHoH6lC-sgw" base_Element="_iaP94bF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_iaQk8rF3EeeEHoH6lC-sgw" base_Element="_iaQk8LF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaToQLF3EeeEHoH6lC-sgw" base_Element="_iaTBMLF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaUPULF3EeeEHoH6lC-sgw" base_Element="_iaToQbF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaU2YLF3EeeEHoH6lC-sgw" base_Element="_iaUPUbF3EeeEHoH6lC-sgw"/>
+  <UMLLabProfile:Reference xmi:id="_iaU2Y7F3EeeEHoH6lC-sgw" base_Element="_iaU2YbF3EeeEHoH6lC-sgw"/>
+</xmi:XMI>
