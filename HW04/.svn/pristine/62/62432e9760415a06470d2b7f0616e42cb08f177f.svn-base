@@ -1,0 +1,18 @@
+package paint.strategy;
+
+import java.awt.geom.AffineTransform;
+
+import paint.ShapePaintStrategy;
+
+import paint.shape.Fish2PolygonFactory;
+public class Fish2PaintStrategy extends ShapePaintStrategy{
+    
+	public Fish2PaintStrategy() {
+		this(new AffineTransform(),0,0,3,3);
+	}
+	
+	public Fish2PaintStrategy(AffineTransform at, double x, double y, double width, double height) {
+		 super(at, Fish2PolygonFactory.Singleton.makeShape(x,y,width,height));
+	}
+
+}

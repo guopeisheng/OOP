@@ -1,0 +1,13 @@
+
+package paint.shape;
+import java.awt.Point;
+import java.awt.geom.AffineTransform;
+
+public class Fish2PolygonFactory extends PolygonFactory{
+	public static final Fish2PolygonFactory Singleton = new Fish2PolygonFactory();
+	public Fish2PolygonFactory() {
+		super(new AffineTransform(),0.1,new Point(-6,2),new Point(-6,-2),new Point(-5,-1),
+				 new Point(-2,-3),new Point(0,-1),new Point(-1,0),new Point(0,1),new Point(-2,3),
+				 new Point(-5,1));
+	}
+}

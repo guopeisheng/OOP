@@ -1,0 +1,27 @@
+
+package updatestrategy;
+
+import java.awt.Point;
+
+import model.ColorBall;
+import model.IUpdateStrategy;
+import util.Randomizer;
+
+/**
+ * This is a concrete strategy that the ball looks like floating
+ * 
+ * @author Yining Bao
+ * @author Luying Wang
+ */
+public class FloatingStrategy implements IUpdateStrategy {
+
+	/**
+	 * @param ball  the corresbonding ball change the ball's velocity
+	 */
+	@Override
+	public void updateState(ColorBall ball) {
+
+		ball.setVelocity(new Point(Randomizer.singleton.randomInt(-10, 10), Randomizer.singleton.randomInt(-10, 10)));
+	}
+
+}

@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+package paint;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+
+import model.ColorBall;
+
+/**
+ * @author yiningbao
+ *
+ */
+public class ShapePaintStrategy extends APaintStrategy{
+     Shape shape;
+	/**
+	 * 
+	 */
+	public ShapePaintStrategy(AffineTransform at, Shape shape) {
+		super(at);
+		this.shape = shape;
+	}
+    
+//	public ShapePaintStrategy(Shape shape) {
+//		this(new AffineTransform(), shape);
+//	}
+	@Override
+	public void init(ColorBall host) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void paintXfrm(Graphics g, ColorBall host, AffineTransform at) {
+		 // shape is a predefined by shape fac and has a start point at(0,0) and a fixed area
+		 // In ApaintStrategy:  at.setToTranslation(host.getLocation().x, host.getLocation().y);
+		 //                     at.scale(scale, scale);
+		 //                     at.rotate(host.getVelocity().x, host.getVelocity().y);
+		
+		 // Returns a new Shape object defined by the geometry of the specified Shape after it has been transformed by this transform.
+	     ((Graphics2D) g).fill(at.createTransformedShape(shape));
+			  
+
+		
+	}
+
+}

@@ -1,0 +1,35 @@
+/**
+ * 
+ */
+package paint.shape;
+
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+
+public class RectangleShapeFactory implements IShapeFactory{
+	public static final RectangleShapeFactory Singleton = new RectangleShapeFactory();
+	public RectangleShapeFactory() {
+	}
+	@Override
+	/**
+	 * @param x the center point of the Rectangle
+	 * @param y center point of Rectangle2
+	 * @param xScale width/2
+	 * @param yScalse height/2
+	 */
+	public Shape makeShape(double x, double y, double xScale, double yScale) {
+//		double	height
+//		The overall height of the Ellipse2D.
+//		double	width
+//		The overall width of this Ellipse2D.
+//		double	x
+//		The X coordinate of the upper-left corner of the framing rectangle of this Rectangle2D.
+//		double	y
+//		The Y coordinate of the upper-left corner of the framing rectangle of this Rectangle2D.
+		
+		return new Rectangle2D.Double(x-xScale, y-yScale, xScale *2 , yScale*2);
+	}
+	
+	
+
+}

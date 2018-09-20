@@ -1,0 +1,18 @@
+package updatestrategy;
+
+import model.*;
+
+/**
+ * This is a concrete strategy that the ball move straightly
+ * 
+ * @author Yining Bao
+ * @author Luying Wang
+ */
+public class StraightStrategy implements IUpdateStrategy {
+	/**
+	 * @param ball  the corresbonding ball straight moving
+	 */
+	@Override
+	public void updateState(ColorBall ball) {
+	}
+}

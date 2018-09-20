@@ -1,0 +1,159 @@
+package controller;
+
+import java.awt.Component;
+
+import java.awt.EventQueue;
+import java.awt.Graphics;
+
+import model.*;
+import view.*;
+
+/**
+ * controller part
+ *
+ */
+public class Controller {
+	/**
+	 * model
+	 */
+	private BallModel _model;
+	/**
+	 * view
+	 */
+	private BallGUI<IStrategyFac, IPaintStrategyFac> _view;
+
+	/**
+	 * constructor
+	 */
+	public Controller() {
+		_view = new BallGUI<IStrategyFac, IPaintStrategyFac>(
+				new IModelControlAdapter<IStrategyFac, IPaintStrategyFac>() {
+
+					/**
+					 * Returns an IStrategyFac that can instantiate the strategy specified by
+					 * classname. Returns null if classname is null. The toString() of the returned
+					 * factory is the classname.
+					 * 
+					 * @param classname
+					 *            Shortened name of desired strategy
+					 * @return A factory to make that strategy
+					 */
+					public void clear() {
+						_model.clearBalls();
+					}
+
+					public void switchStrategy(IStrategyFac strategy) {
+						_model.switchSwitcherStrategy(strategy.make());
+
+					}
+
+					public void makeSwitchBall(IPaintStrategyFac paintStrategy) {
+						_model.loadBall(_model.getSwitcherStrategy(), paintStrategy.make());
+					}
+
+					public IStrategyFac addStrategy(String classname) {
+						return _model.makeStrategyFac(classname);
+					}
+
+					public IPaintStrategyFac addPaintStrategy(String classname) {
+						return _model.makePaintStrategyFac(classname);
+					}
+
+					/**
+					 * Add a ball to the system with a strategy as given by the given IStrategyFac
+					 * 
+					 * @param selectedItem
+					 *            The fully qualified name of the desired strategy.
+					 */
+
+					public void makeBall(IStrategyFac selectedItem, IPaintStrategyFac selectedItem2) {
+						if (null != selectedItem)
+							_model.loadBall(selectedItem.make(), selectedItem2.make());
+					}
+
+					/**
+					 * Returns an IStrategyFac that can instantiate a MultiStrategy with the two
+					 * strategies made by the two given IStrategyFac objects. Returns null if either
+					 * supplied factory is null. The toString() of the returned factory is the
+					 * toString()'s of the two given factories, concatenated with "-". *
+					 * 
+					 * @param selectedItem1
+					 *            An IStrategyFac for a strategy
+					 * @param selectedItem2
+					 *            An IStrategyFac for a strategy
+					 * @return An IStrategyFac for the composition of the two strategies
+					 */
+					public IStrategyFac combineStrategies(IStrategyFac selectedItem1, IStrategyFac selectedItem2) {
+
+						return _model.combineStrategyFacs(selectedItem1, selectedItem2);
+					}
+
+				}
+
+				, new IModelUpdateAdapter() {
+
+					/**
+					 * 
+					 * Pass the update request to the model.
+					 * 
+					 * @param g
+					 *            The Graphics object the balls use to draw themselves.
+					 * 
+					 */
+
+					public void update(Graphics g) {
+
+						_model.paint(g);
+
+					}
+
+				});
+		_model = new BallModel(new IModel2ViewAdapter() {
+			// In the adapter code, one can reference the view field above because it is in
+			// scope.
+			// It's ok that the view field is currently null because it will be set below.
+			// Just don't start the model yet!
+
+			// model2view adapter should exist before model
+			@Override
+			public void update() {
+				_view.update();
+			}
+
+			@Override
+			public Component getComponent() {
+				return _view.getCenterPanel();
+			}
+
+		});
+	}
+
+	/**
+	 * Start the system
+	 */
+	public void start() {
+		_model.start(); // It is usually better to start the model first but not always.
+		_view.start();
+	}
+
+	/**
+	 * Launch the application.
+	 * 
+	 * @param args
+	 *            Arguments given by the system or command line.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() { // Java specs say that the system must be constructed on the GUI event
+												// thread.
+			public void run() {
+				try {
+					Controller controller = new Controller(); // instantiate the system
+					controller.start(); // start the system
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+}

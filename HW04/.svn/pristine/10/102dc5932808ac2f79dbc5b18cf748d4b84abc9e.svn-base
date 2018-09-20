@@ -1,0 +1,42 @@
+package updatestrategy;
+
+import model.*;
+
+/**
+ * This is a concrete strategy that the ball can change its strategy
+ * 
+ * @author Yining Bao
+ * @author Luying Wang
+ */
+public class SwitcherStrategy implements IUpdateStrategy {
+	/**
+	 * current strategy
+	 */
+	private IUpdateStrategy myStrategy;
+
+	/**
+	 * constructor of SwitcherStrategy
+	 */
+	public SwitcherStrategy() {
+		myStrategy = new StraightStrategy();
+	}
+
+	/**
+	 * change the current strategy
+	 * 
+	 * @param newStrategy new strategy
+	 */
+	public void setStrategy(IUpdateStrategy newStrategy) {
+		myStrategy = newStrategy;
+	}
+
+	/**
+	 * update the ball using new strategy
+	 * 
+	 * @param ball the corresbonding ball
+	 */
+	@Override
+	public void updateState(ColorBall ball) {
+		myStrategy.updateState(ball);
+	}
+}

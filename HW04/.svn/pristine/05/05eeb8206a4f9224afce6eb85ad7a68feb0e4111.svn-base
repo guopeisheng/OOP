@@ -1,0 +1,68 @@
+package paint;
+/** 
+* @author : 
+* @version :{date:} {time:} 
+* @Description: 
+*/
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Shape;
+import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
+import java.awt.image.ImageObserver;
+
+import model.ColorBall;
+public class ImagePaintStrategy extends APaintStrategy{//???//???//???
+	private ImageObserver imageObs;
+	private Image image;
+	private double scaleFactor=1.0;
+	private double fillFactor=1.0;
+	protected AffineTransform localAT = new AffineTransform();
+	protected AffineTransform tempAT;
+	public ImagePaintStrategy(AffineTransform at, String filename, double fillFactor) {
+		super(at);//???
+		try {
+			image = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(filename));
+		}
+		catch (Exception e){
+			System.err.println("ImagePaintStrategy: Error reading file: "+filename +"\n"+e);
+		}
+	}
+	public ImagePaintStrategy(String filename, double fillFactor) {
+		super(new AffineTransform());//???
+		try {
+			image = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(filename));
+		}
+		catch (Exception e){
+			System.err.println("ImagePaintStrategy: Error reading file: "+filename +"\n"+e);
+		}
+	}
+	 public void paintXfrm(Graphics g, ColorBall host, AffineTransform at){
+	 localAT.setToScale(scaleFactor, scaleFactor);
+	 localAT.translate(-image.getWidth(imageObs)/2.0, -image.getHeight(imageObs)/2.0);
+	 localAT.preConcatenate(at);
+	 ((Graphics2D)g).drawImage(image, localAT, imageObs); 
+	 }
+	public void init(ColorBall host) {//???
+//		  imageObs = host.getComponent();
+//		  MediaTracker mt = new MediaTracker(host.getComponent());
+//		  mt.addImage(image, 1);
+//		  try {
+//		  	mt.waitForAll();
+//		  }
+//		  catch(Exception e){
+//		  	System.out.println("ImagePaintStrategy.init(): Error waiting for image.  Exception = "+e);
+//		  }
+//
+//		  scaleFactor = 2.0/(fillFactor*(image.getWidth(imageObs)+image.getHeight(imageObs))/2.0);
+		}
+	
+	@Override
+	protected void paintCfg(Graphics g, ColorBall host) {
+		  super.paintCfg(g, host);
+		  if(Math.abs(Math.atan2(host.getVelocity().y, host.getVelocity().x))> Math.PI/2.0) {
+		    at.scale(1.0, -1.0);
+		  }        
+		}
+}

@@ -1,0 +1,28 @@
+/**
+ * 
+ */
+package updatestrategy;
+
+import model.ColorBall;
+import model.IUpdateStrategy;
+import util.Randomizer;
+
+/**
+ * This is a concrete strategy that the ball changes color randomly
+ * 
+ * @author Yining Bao
+ * @author Luying Wang
+ */
+public class ColorStrategy implements IUpdateStrategy {
+
+	/**
+	 * @param ball the corresbonding ball change the ball's color
+	 */
+
+	@Override
+	public void updateState(ColorBall ball) {
+
+		ball.setColor(Randomizer.singleton.randomColor());
+	}
+
+}

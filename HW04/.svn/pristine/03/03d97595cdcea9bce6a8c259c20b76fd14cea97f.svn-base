@@ -1,0 +1,28 @@
+package paint.strategy;
+
+import java.awt.Graphics;
+
+import model.ColorBall;
+import model.IPaintStrategy;
+
+public class BallPaintStrategy implements IPaintStrategy {
+
+	public BallPaintStrategy() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void init(ColorBall host) {
+		
+		
+	}
+
+	@Override
+	public void paint(Graphics g, ColorBall host) {
+		g.setColor(host.getColor());
+		g.fillOval(host.getLocation().x - host.getRadius(), host.getLocation().y - host.getRadius(), 2 * host.getRadius(), 2 *host.getRadius() );
+		
+		
+	}
+
+}
