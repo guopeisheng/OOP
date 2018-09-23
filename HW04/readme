@@ -1,0 +1,33 @@
+Type the name of a strategy into the text field on the left.  See the list below for the available strategies. 
+ Clicking the "Add to Lists" button will then add it to both the drop lists.
+
+"Make Selected Ball" will make a ball with the strategy selected on the top drop list.
+
+"Combine!" will dynamically create a strategy that is the combination of the strategies selected on top and bottom lists. 
+The new strategy is placed back into both drop lists and can be used again for combining.
+ For instance, add then combine "Curve" and "Breathing" to make a ball that curves and breathes.
+ 
+"Make Switcher" will make a ball, initially, ones that go straight. 
+ 
+Clicking "Switch!" will cause all Switcher balls ever made to switch behaviors to whatever is the selected strategy on the top drop list.
+ Switcher balls made later will have the same behavior as whatever the previously made Switchers have.
+ 
+ Type the name of paint strategy into the text field on the right.See the list below for the available strategies.
+ Clicking the "Add" button will then add it to the drop list.
+  
+ The following different types of strategies are available for use:
+ Breathing
+ Color
+ Curve
+ Floating
+ Magnetic
+ Straight
+ 
+ The following different types of paint strategies are available for use:
+ Ball         (Non-affine transform-based paint strategy)
+ Square       (Non-affine transform-based paint strategy)
+ Ellipse      (Simple geometric shape)
+ Fish1        (polygon)
+ Component    (Composite shape that stays upright)
+ SharkImage   (image)
+ SoccerImage  (image)
